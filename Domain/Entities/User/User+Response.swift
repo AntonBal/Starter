@@ -7,3 +7,20 @@
 //
 
 import Foundation
+
+extension User {
+    struct Response: Decodable, Identifiable {
+        let id: User.ID
+        let firstName: String
+        let lastName: String
+    }
+}
+
+//MARK: - Persistable
+
+extension User.Response: Persistable {
+    func update(_ object: RMUser, context: Void) throws {
+        object.firstName = firstName
+        object.lastName = lastName
+    }
+}

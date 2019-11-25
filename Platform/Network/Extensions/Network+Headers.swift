@@ -7,3 +7,14 @@
 //
 
 import Foundation
+import Alamofire
+
+extension Network.Header {
+    static func accept(contentTypes: [String]) -> Network.Header {
+        HTTPHeader.accept(contentTypes.joined(separator: ", "))
+    }
+    
+    static var defaultAccept: Network.Header {
+        accept(contentTypes: ["application/json"])
+    }
+}

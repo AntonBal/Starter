@@ -9,3 +9,5 @@
 import Foundation
 
 protocol AutoUseCaseProvider {}
+protocol AutoLenses {}
+protocol AutoCases {}

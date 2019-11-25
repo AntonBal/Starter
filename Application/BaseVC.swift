@@ -6,4 +6,8 @@
 //  Copyright © 2019 Anton Bal'. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class BaseVC: UIViewController {
+    
+}

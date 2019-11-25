@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+struct User: Identifiable {
+    
+    typealias ID = Int64
+    
+    let id: ID
+    let firstName: String
+    let lastName: String
+}

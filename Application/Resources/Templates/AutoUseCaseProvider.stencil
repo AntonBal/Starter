@@ -1,12 +1,11 @@
-
-{% for type in types.structs|public %}
-// sourcery:inline:auto:{{ type.name }}.AutoPublicStruct
-// DO NOT EDIT
-public init({% for variable in type.storedVariables %}{{variable.name}}: {{variable.typeName}}{% if not forloop.last %}, {% endif %}
-{% endfor %}) {
-{% for variable in type.storedVariables %}
-self.{{variable.name}} = {{variable.name}}
-{% endfor %}
+{% for type in types.implementing.AutoUseCaseProvider|protocol %}
+protocol Has{{type.name|upperFirstLetter}} {
+var {{type.name|replace:"UseCase",""|lowerFirstLetter}}: {{type.name}} { get }
 }
-// sourcery:end
 {% endfor %}
+
+typealias UseCases =
+{% for type in types.implementing.AutoUseCaseProvider|protocol %}Has{{type.name|upperFirstLetter}}{% if not forloop.last %} &
+{% endif %}{% endfor %}
+
+protocol UseCasesProvider: UseCases {}

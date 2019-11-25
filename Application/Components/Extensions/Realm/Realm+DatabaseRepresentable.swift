@@ -6,35 +6,32 @@
 //  Copyright © 2019 Anton Bal'. All rights reserved.
 //
 
-import Foundation
+import RealmSwift
 
 extension Realm {
-    func fetch<T: Identifiable>(_ value: T) throws
-        -> T.Owner.ManagedObject
+    func fetch<T: DatabaseRepresentable>(_ value: T) throws
+        -> T.ManagedObject
         where
-        T.Owner: DatabaseRepresentable,
-        T.Owner.ManagedObject: RealmSwift.Object
+        T.ManagedObject: RealmSwift.Object
     {
-        if let object = object(ofType: T.Owner.ManagedObject.self,
-                               forPrimaryKey: value.id.value) {
+        if let object = object(ofType: T.ManagedObject.self,
+                               forPrimaryKey: value.id) {
             return object
         } else {
-            throw DatabaseError.notFound(type: T.Owner.ManagedObject.self,
+            throw DatabaseError.notFound(type: T.ManagedObject.self,
                                          id: value.id)
         }
     }
 
-    func fetch<T: DatabaseRepresentable>(_ id: Token<T, T.Identifier>) throws
-        -> T.Owner.ManagedObject
+    func fetch<T: DatabaseRepresentable>(type: T.Type, by id: T.ID) throws -> T.ManagedObject
         where
-        T.Owner: DatabaseRepresentable,
-        T.Owner.ManagedObject: RealmSwift.Object
+        T.ManagedObject: RealmSwift.Object
     {
-        if let object = object(ofType: T.Owner.ManagedObject.self,
-                               forPrimaryKey: id.value) {
+        if let object = object(ofType: T.ManagedObject.self,
+                               forPrimaryKey: id) {
             return object
         } else {
-            throw DatabaseError.notFound(type: T.Owner.ManagedObject.self,
+            throw DatabaseError.notFound(type: T.ManagedObject.self,
                                          id: id)
         }
     }

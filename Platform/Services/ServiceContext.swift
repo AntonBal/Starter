@@ -7,3 +7,19 @@
 //
 
 import Foundation
+
+final class ServiceContext {
+    
+    let environment: PlatformEnvironment
+    let network: Network
+    let database: Database
+
+    init(environment: PlatformEnvironment,
+         network: Network,
+         database: Database) {
+        self.environment = environment
+        self.network = network
+        self.database = database
+    }
+}
+

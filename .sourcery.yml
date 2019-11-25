@@ -1,0 +1,11 @@
+sources:
+  include:
+  - Platform
+  - Application/Resources/Templates/Templates.swift
+  exclude:
+  - Application/Resources/Generated
+templates:
+  - Pods/Sourcery/Templates
+  - Application/Resources/Templates
+output:
+  Application/Resources/Generated

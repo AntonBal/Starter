@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+protocol AnyCoordinatorProtocol: class {
+    func start()
+    func stop()
+}
+
+extension AnyCoordinatorProtocol {
+    func start() { }
+    func stop() { }
+}

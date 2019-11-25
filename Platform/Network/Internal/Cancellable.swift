@@ -14,15 +14,15 @@ protocol Cancellable {
 }
 
 final class CancellableToken: Cancellable {
-    private let token: Bool = false
+    private let token: AtomicBool = false
     private var didCancelClosure: (() -> Void)?
 
     var isCancelled: Bool {
-        return token //.value
+        return token.value
     }
 
     func cancel() {
-//        token.value = true
+        token.value = true
         didCancelClosure?()
     }
 

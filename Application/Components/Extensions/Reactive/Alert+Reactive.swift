@@ -23,7 +23,7 @@ extension Reactive where Base: BaseVC {
     
     func bindingTarget<E: Error>(type: E.Type, okHandler: ((E)-> Void)? = nil) -> BindingTarget<E> {
         return makeBindingTarget { base, error in
-            let okButtonTitle = R.string.localizable.actionOk()
+            let okButtonTitle = "Ok"
             let message = error.localizedDescription
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             let okAction = UIAlertAction(title: okButtonTitle, style: .default, handler:  { _ in
@@ -31,7 +31,6 @@ extension Reactive where Base: BaseVC {
             })
             alert.addAction(okAction)
             base.present(alert, animated: true, completion: nil)
-            base.hideActivity()
         }
     }
 }

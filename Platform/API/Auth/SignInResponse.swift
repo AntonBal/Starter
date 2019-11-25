@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct SignInResponse: Decodable {
+    let user: User.Response
+    let session: AccessToken
+}

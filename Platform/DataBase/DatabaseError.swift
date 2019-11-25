@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+enum DatabaseError: LocalizedError {
+    case notFound(type: Any, id: Any)
+}
+

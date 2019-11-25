@@ -7,9 +7,12 @@
 //
 
 import ReactiveSwift
-import Result
 
-// sourcery: UseCase
-public protocol SessionUseCase {
+protocol SessionUseCase: AutoUseCaseProvider {
+    func signIn(_ params: SignInParams) -> AsyncTask<User>
+    func logout() -> AsyncTask<Void>
     
+    var didLogin: Signal<User, Never> { get }
+    var didLogout: Signal<Void, Never> { get }
+    var authorizedUser: AsyncTask<User> { get }
 }

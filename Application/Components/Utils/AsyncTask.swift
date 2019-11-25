@@ -7,3 +7,9 @@
 //
 
 import Foundation
+import ReactiveSwift
+
+typealias AsyncTask<Value> = SignalProducer<Value, AppError>
+typealias AsyncTaskValue<Value> = SignalProducer<Value, Never>
+typealias PipeValue<V> = (output: Signal<V, Never>, input: Signal<V, Never>.Observer)
+typealias Pipe<V, E:Error> = (output: Signal<V, E>, input: Signal<V, E>.Observer)
